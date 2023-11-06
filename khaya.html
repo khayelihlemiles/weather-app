@@ -80,7 +80,12 @@
       <h1 id="current-city">Manzini</h1>
       <h2><span id="current-date"></span></h2>
       <h3 id="temperature">⛅<br />30°c</h3>
-      <p>Precipitation:0%<br />Humidity:77%<br />Wind:km/hr</p>
+      <p class="weather-details">
+        <span id="description"> weather condition</span><br />Humidity:<em
+          id="humidity"
+        ></em
+        ><br />Wind:<span id="wind-speed"></span>km/hr
+      </p>
 
       <div class="week-days">
         <div>🌧 <br />Thurs<br />15°c</div>
@@ -104,10 +109,19 @@
   <script>
     function getTemperature(response) {
       let temperatureElement = document.querySelector("#temperature");
-      temperatureElement.innerHTML = Math.round(
+      temperatureElement.innerHTML = `${Math.round(
         response.data.temperature.current
-      );
+      )}°c`;
+      let descriptionElement = document.querySelector("#description");
+      descriptionElement.innerHTML = response.data.condition.description;
+
+      let humidityElement = document.querySelector("#humidity");
+      humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+
+      let windElement = document.querySelector("#wind-speed");
+      windElement.innerHTML = response.data.wind.speed;
     }
+
     function handleSubmit(event) {
       event.preventDefault();
       let searchInputElement = document.querySelector("#search-input");
@@ -119,6 +133,8 @@
 
       axios.get(apiUrl).then(getTemperature);
       cityElement.innerHTML.value = city;
+
+      console.log(response.data);
     }
 
     let searchForm = document.querySelector("#search-form");
