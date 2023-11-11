@@ -53,6 +53,7 @@
         border-width: 1px;
         border-radius: 10px;
         padding: 6px;
+        border-color: #00204a;
       }
       form {
         text-align: center;
@@ -60,9 +61,21 @@
         border: none;
         padding: 10px;
         border-radius: 4px;
+        border-color: #00204a;
       }
       #icon {
         text-align: center;
+      }
+      .weather-forecast {
+        margin-top: 20px;
+        text-align: center;
+      }
+      .weather-forecast-date {
+        font-size: 16px;
+        color: #00204a;
+      }
+      .weather-forecast-max {
+        font-weight: bold;
       }
     </style>
   </head>
@@ -94,7 +107,22 @@
         ><br />Wind:<span id="wind-speed"></span>km/hr
       </p>
 
-      <div class="weather-forecast" id="forecast"></div>
+      <div class="weather-forecast">
+        <div class="row">
+          <div class="col-2">
+            <div class="weather-forecast-date">Thu</div>
+            <img
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
+              alt=""
+              width="40"
+            />
+            <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-min">15°</span>
+              <span class="weather-forecast-max">30°</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
   <script>
