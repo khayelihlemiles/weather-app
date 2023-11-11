@@ -61,6 +61,9 @@
         padding: 10px;
         border-radius: 4px;
       }
+      #icon {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -78,11 +81,12 @@
 
       <h1 id="current-city">Manzini</h1>
       <h2><span id="current-date"></span></h2>
-      <h3 id="temperature">
-        <div id="icon"></div>
-        <br />
-        30°c
-      </h3>
+      <div id="icon">
+        <img
+          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
+        />
+      </div>
+      <h3 id="temperature">30°c</h3>
       <p class="weather-details">
         <span id="description"> weather condition</span><br />Humidity:<em
           id="humidity"
