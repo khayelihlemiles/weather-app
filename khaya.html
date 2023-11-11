@@ -31,35 +31,34 @@
         font-family: "Roboto Mono", monospace;
         font-weight: bold;
         font-weight: 300;
+        color: #00204a;
       }
       h2 {
         text-align: center;
         font-family: "Roboto Mono", monospace;
+        color: #00204a;
       }
       h3 {
         text-align: center;
         font-size: 40px;
+        color: #680747;
       }
       p {
         text-align: center;
         font-family: "Roboto Mono", monospace;
+        color: #00204a;
       }
-      .week-days {
-        display: flex;
-        justify-content: space-around;
-        text-align: center;
-        margin: 55px 40px 80px 40px;
-      }
+
       .enterCity {
         border-width: 1px;
         border-radius: 10px;
-        padding: 8px;
+        padding: 6px;
       }
       form {
         text-align: center;
         margin: 10px;
         border: none;
-        padding: 20px;
+        padding: 10px;
         border-radius: 4px;
       }
     </style>
@@ -79,7 +78,11 @@
 
       <h1 id="current-city">Manzini</h1>
       <h2><span id="current-date"></span></h2>
-      <h3 id="temperature">⛅<br />30°c</h3>
+      <h3 id="temperature">
+        <div id="icon"></div>
+        <br />
+        30°c
+      </h3>
       <p class="weather-details">
         <span id="description"> weather condition</span><br />Humidity:<em
           id="humidity"
@@ -87,23 +90,7 @@
         ><br />Wind:<span id="wind-speed"></span>km/hr
       </p>
 
-      <div class="week-days">
-        <div>🌧 <br />Thurs<br />15°c</div>
-        <div>
-          ⛅<br />
-          Friday<br />
-          25°c
-        </div>
-        <div>🌥 <br />Sat<br />25°c</div>
-        <div>
-          ☀<br />
-          Sund<br />32°c
-        </div>
-        <div>
-          ☀<br />Mon<br />
-          33°c
-        </div>
-      </div>
+      <div class="weather-forecast" id="forecast"></div>
     </div>
   </body>
   <script>
@@ -120,21 +107,22 @@
 
       let windElement = document.querySelector("#wind-speed");
       windElement.innerHTML = response.data.wind.speed;
+
+      let iconElement = document.querySelector("#icon");
+      iconElement.innerHTML = `<img src="${response.data.condition.icon_url}"/> `;
     }
 
     function handleSubmit(event) {
       event.preventDefault();
+
       let searchInputElement = document.querySelector("#search-input");
       let cityElement = document.querySelector("#current-city");
       cityElement.innerHTML = searchInputElement.value;
-
       let city = searchInputElement.value;
       let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=79be4f630f69t8bffa4o15edaf3814a6&units=metric`;
 
       axios.get(apiUrl).then(getTemperature);
       cityElement.innerHTML.value = city;
-
-      console.log(response.data);
     }
 
     let searchForm = document.querySelector("#search-form");
